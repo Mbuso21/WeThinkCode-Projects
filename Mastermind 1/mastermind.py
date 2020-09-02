@@ -1,0 +1,76 @@
+import random
+
+
+def run_game():
+    """
+    TODO: implement Mastermind code here
+    """
+    #Step 1
+    code = [0,0,0,0]
+    for i in range(0,4):
+        ran_int = random.randint(1,8)
+        while ran_int == code[0] or ran_int == code[1] or ran_int == code[2] or ran_int == code[3]:
+            ran_int = random.randint(1,8)
+          
+        code[i] = ran_int
+
+    print('4-digit Code has been set. Digits in range 1 to 8. You have 12 turns to break it.')
+
+    #Step 2
+    guesses = 12
+    while True:
+        ask_again = True
+        while ask_again:
+            try:
+                code_breaker = int(input('Input 4 digit code: '))                   # takes input and converts to int
+                code_breaker = list(str(code_breaker))                              # takes input and converts to a string since you you cant iterate an int  
+                if len(code_breaker) > len(code) or len(code_breaker) <  len(code): #compares if length is the greater than or less than the code
+                    ask_again = True                                                #if true assigns True to ask_again                                           
+                    print("Please enter exactly 4 digits.")
+                else:
+                    ask_again = False
+            except ValueError:
+                print("Please enter exactly 4 digits.")
+                ask_again = True
+        
+        code_breaker = [int(i) for i in code_breaker]
+        
+        #print(f'Your Guess is {code_breaker}')
+
+        #Step 3:
+        
+        corr_num = 0
+        for index in range(len(code)):
+            if code_breaker[index] == code[index]:
+                corr_num += 1
+
+        print(f'Number of correct digits in correct place:     {corr_num}')
+        corr_num2 = 0
+        for i in range(len(code)):
+            if code_breaker[i] != code[i]:
+                if code_breaker[i] in code:
+                    corr_num2 += 1
+        
+        print(f'Number of correct digits not in correct place: {corr_num2}')
+
+        if corr_num == len(code):
+            print('Congratulations! You are a codebreaker!')
+            code = [str(i) for i in code]
+            code = ''.join(code)
+            print(f'The code was: {code}')
+            break
+        else:
+            guesses -= 1
+            print(f'Turns left: {guesses}') 
+
+            if guesses == 0:
+                print('Out of turns')
+                code = [str(i) for i in code]
+                code = ''.join(code)
+                print(f'The code was: {code}')
+                break
+
+             
+
+if __name__ == "__main__":
+    run_game()
