@@ -1,0 +1,1 @@
+print(f'[Package] Banking.online package loaded.')
