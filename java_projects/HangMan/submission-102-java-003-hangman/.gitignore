@@ -1,0 +1,13 @@
+#IntelliJ Files
+.idea/
+*.iml
+target/
+
+#VSCode Files
+.vscode/
+.classpath
+.project
+.settings/
+
+#OS files
+.DS_Store
