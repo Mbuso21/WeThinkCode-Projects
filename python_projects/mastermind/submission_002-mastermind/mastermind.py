@@ -122,8 +122,8 @@ def run_game():
     '''
     
     code = generate_ran_code()
-    print_code(code)
-    #end_game(code)   
+#     print_code(code)
+    end_game(code)   
 
     
 
